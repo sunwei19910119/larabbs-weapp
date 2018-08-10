@@ -1,11 +1,13 @@
+<style>
+</style>
 <template>
   <view class="container">
-    首页话题列表
+    我的页面
   </view>
 </template>
 
 <script>
   import wepy from 'wepy'
 
-  export default class Index extends wepy.pages {}
+  export default class User extends wepy.page {}
 </script>
