@@ -54,17 +54,17 @@ export default class extends wepy.app {
       navigationBarTitleText: 'SunnyJoy',
       navigationBarTextStyle: 'black'
     },
-    tabBar:{
-      list:[{
-        pagePath:'pages/index',
-        text:'首页',
-        iconPath:'images/index.png',
-        selectedIconPath:'images/index_selected.png'
-      },{
-        pagePath:'pages/user',
-        text:'我的',
-        iconPath:'images/user.png',
-        selectedIconPath:'images/user_selected.png'
+    tabBar: {
+      list: [{
+        pagePath: 'pages/index',
+        text: '首页',
+        iconPath: 'images/index.png',
+        selectedIconPath: 'images/index_selected.png'
+      }, {
+        pagePath: 'pages/user',
+        text: '我的',
+        iconPath: 'images/user.png',
+        selectedIconPath: 'images/user_selected.png'
       }],
       color: '#707070',
       selectedColor: '#00b5ad'
@@ -74,9 +74,13 @@ export default class extends wepy.app {
   constructor () {
     super()
     this.use('requestfix')
+    this.use('promisify')
   }
 
   onLaunch() {
+    wepy.login().then(res => {
+      console.log('login:', res)
+    })
   }
 }
 </script>
