@@ -8,7 +8,7 @@
     <view class="page__bd login-wrap">
       <view class="weui-toptips weui-toptips_warn" wx:if="{{ errorMessage }}">{{ errorMessage }}</view>
 
-      <view class="weui-cells__title">Larabbs 用户登录</view>
+      <view class="weui-cells__title">用户登录</view>
       <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input {{ error ? 'weui-cell_warn' : ''}}">
           <view class="weui-cell__hd">
@@ -34,6 +34,9 @@
         </view>
       </view>
 
+      <view class="weui-agree__text">
+         如果还没加入，可以<navigator url="/pages/auth/register" class="weui-agree__link">注册新用户</navigator>
+      </view>
       <view class="weui-btn-area">
         <button class="weui-btn" type="primary" @tap="submit">登录</button>
       </view>
