@@ -18,6 +18,7 @@
   "author": "sunwei19910119 <754293591@qq.com>",
   "license": "MIT",
   "dependencies": {
+    "moment": "^2.22.2",
     "promise-polyfill": "^8.1.0",
     "redux": "^3.7.2",
     "redux-actions": "^2.2.1",
