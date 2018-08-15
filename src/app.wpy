@@ -48,7 +48,8 @@ export default class extends wepy.app {
   config = {
     pages: [
       'pages/index',
-      'pages/user',
+      'pages/users/me',
+      'pages/users/edit',
       'pages/auth/login',
       'pages/auth/register'
     ],
@@ -65,7 +66,7 @@ export default class extends wepy.app {
         iconPath: 'images/index.png',
         selectedIconPath: 'images/index_selected.png'
       }, {
-        pagePath: 'pages/user',
+        pagePath: 'pages/users/me',
         text: '我的',
         iconPath: 'images/user.png',
         selectedIconPath: 'images/user_selected.png'
@@ -81,26 +82,20 @@ export default class extends wepy.app {
     this.use('promisify')
   }
 
-  onLaunch() {
-
-  }
-
-    // 获取当前登录用户信息
+  // 获取当前登录用户信息
   async getCurrentUser () {
     // 如果用户未登录
     if (!this.checkLogin()) {
       return null
     }
-
     // 从缓存中获取用户信息
     let user = wepy.getStorageSync('user')
-
     try {
       // 登录了但是缓存中没有，请求接口获取
       if (!user) {
         let userResponse = await api.authRequest('user')
-        // 状态码为 200 表示请求成功
-        if (userResponse.statusCode === 200) {
+        // 状态码为 201 表示请求成功
+        if (userResponse.statusCode === 201) {
           user = userResponse.data
           wepy.setStorageSync('user', user)
         }

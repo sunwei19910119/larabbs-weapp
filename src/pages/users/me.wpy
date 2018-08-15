@@ -22,7 +22,7 @@
     <view class="page__bd" >
       <view class="weui-cells weui-cells_after-title">
         <!-- 已登录 -->
-        <navigator class="weui-cell" wx:if="{{ user }}" url>
+        <navigator class="weui-cell" wx:if="{{ user }}" url="/pages/users/edit">
           <view class="weui-cell__hd avatar-wrap">
             <image class="avatar" src="{{ user.avatar }}"/>
           </view>
@@ -72,11 +72,13 @@
   import wepy from 'wepy'
   import api from '@/utils/api'
 
-  export default class User extends wepy.page {
+  export default class UserMe extends wepy.page {
     config = {
       navigationBarTitleText: '我的'
     }
     data = {
+        // 标记是否登录
+      loggedIn: false,
       // 用户信息
       user: null
     }
@@ -84,6 +86,16 @@
       // 每次打开页面，获取当前用户信息
       this.user = await this.$parent.getCurrentUser()
       this.$apply()
+      // // 获取缓存中的 access_token
+      // let accessToken = wepy.getStorageSync('access_token')
+
+      // // Token 存在则说明已登录
+      // if (accessToken) {
+      //   // 获取当前用户信息
+      //   this.user = await this.$parent.getCurrentUser()
+      //   this.loggedIn = true
+      //   this.$apply()
+      // }
     }
     methods = {
       // 退出登录方法
