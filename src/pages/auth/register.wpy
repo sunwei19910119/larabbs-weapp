@@ -115,7 +115,7 @@
       // 表单错误
       errors: {},
       // 短信验证码 key 及过期时间
-      verificationCode: {},
+      verificationCode: {}
     }
      // 重置注册流程，初始化 data 数据
     resetRegister() {
@@ -165,7 +165,6 @@
           this.captchaModalHidden = false
           this.$apply()
         }
-
       } catch (err) {
         console.log(err)
         wepy.showModal({
