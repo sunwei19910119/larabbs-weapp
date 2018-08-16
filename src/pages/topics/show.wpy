@@ -15,11 +15,18 @@ page{
 .topic-title {
   padding: 15px;
 }
+.create-reply {
+  width: 40px;
+  height: 40px;
+  position: fixed;
+  bottom: 30px;
+  right: 30px;
+}
 </style>
 <template>
   <view class="page">
     <view class="page__bd">
-    <view class="weui-cells weui-cells_after-title">
+      <view class="weui-cells weui-cells_after-title">
         <navigator class="weui-cell" url="/pages/users/show?id={{ topic.user.id }}" open-type="redirect">
           <view class="weui-cell__hd avatar-wrap">
             <image class="avatar" src="{{ topic.user.avatar }}"/>
@@ -72,6 +79,10 @@ page{
           </view>
         </view>
       </view>
+      <!-- 回复按钮 -->
+      <navigator url="/pages/replies/create?topic_id={{ topic.id }}">
+        <image src="/images/reply.png" class="create-reply" />
+      </navigator>
     </view>
   </view>
 </template>
@@ -146,7 +157,11 @@ page{
       this.user = await this.$parent.getCurrentUser()
       this.$apply()
     }
-
+    async onShow() {
+      this.$parent.checkRefreshPages(this.getCurrentPages().pop().route, () => {
+        this.getTopic(this.topic.id)
+      })
+    }
     methods = {
       async deleteTopic() {
         // 删除确认
