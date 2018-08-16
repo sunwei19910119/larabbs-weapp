@@ -51,6 +51,7 @@ export default class extends wepy.app {
       'pages/topics/show',
       'pages/topics/userIndex',
       'pages/users/me',
+      'pages/users/show',
       'pages/users/edit',
       'pages/auth/login',
       'pages/auth/register'
