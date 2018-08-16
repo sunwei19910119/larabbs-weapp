@@ -57,7 +57,8 @@ export default class extends wepy.app {
       'pages/auth/register',
       'pages/replies/index',
       'pages/replies/userIndex',
-      'pages/replies/create'
+      'pages/replies/create',
+      'pages/notifications/index'
     ],
     window: {
       backgroundTextStyle: 'light',
@@ -149,7 +150,7 @@ export default class extends wepy.app {
       this.globalData.unreadCount = notificationResponse.data.unread_count
     }
   }
-  
+
   checkRefreshPages (route, callback) {
     let refreshIndex = this.globalData.refreshPages.indexOf(route)
     if (refreshIndex === -1) {
