@@ -43,9 +43,10 @@
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
         <navigator class="weui-cell weui-cell_access" url="">
-          <view class="weui-cell__bd" url="">
-            <view class="weui-cell__bd">我的消息</view>
-          </view>
+            <view class="weui-cell__bd">
+              <view style="display: inline-block; vertical-align: middle">我的消息</view>
+              <view class="weui-badge" style="margin-left: 5px;" wx:if="{{ unreadCount }}">{{ unreadCount }}</view>
+            </view>
           <view class="weui-cell__ft weui-cell__ft_in-access"></view>
         </navigator>
         <navigator class="weui-cell weui-cell_access" url="{{ user ? '/pages/topics/userIndex?user_id='+ user.id : '' }}">
@@ -71,6 +72,7 @@
 <script>
   import wepy from 'wepy'
   import api from '@/utils/api'
+  import unreadCount from '@/mixins/unreadCount'
 
   export default class UserMe extends wepy.page {
     config = {
@@ -82,20 +84,11 @@
       // 用户信息
       user: null
     }
+    mixins = [unreadCount]
     async onShow() {
       // 每次打开页面，获取当前用户信息
       this.user = await this.$parent.getCurrentUser()
       this.$apply()
-      // // 获取缓存中的 access_token
-      // let accessToken = wepy.getStorageSync('access_token')
-
-      // // Token 存在则说明已登录
-      // if (accessToken) {
-      //   // 获取当前用户信息
-      //   this.user = await this.$parent.getCurrentUser()
-      //   this.loggedIn = true
-      //   this.$apply()
-      // }
     }
     methods = {
       // 退出登录方法
